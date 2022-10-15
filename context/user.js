@@ -12,8 +12,6 @@ const Provider = ({ children }) => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log('calling useEffect');
-
     const getUserProfile = async () => {
       const sessionUser = supabase.auth.user();
 
@@ -55,12 +53,12 @@ const Provider = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-      console.log('subscription');
+      // console.log('subscription');
       const subscription = supabase
         .from(`profile:id=eq.${user.id}`)
         .on('UPDATE', (payload) => {
-          console.log('payload is:', payload);
-          console.log('user is:', user);
+          // console.log('payload is:', payload);
+          // console.log('user is:', user);
           setUser({ ...user, ...payload.new });
         })
         .subscribe();
@@ -72,14 +70,14 @@ const Provider = ({ children }) => {
   }, [user]);
 
   const login = async () => {
-    console.log('calling login');
+    // console.log('calling login');
     await supabase.auth.signIn({
       provider: 'github',
     });
   };
 
   const logout = async () => {
-    console.log('calling logout');
+    // console.log('calling logout');
     await supabase.auth.signOut();
     setUser(null);
     router.push('/');

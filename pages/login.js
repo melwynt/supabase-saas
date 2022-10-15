@@ -7,7 +7,12 @@ const Login = () => {
   useEffect(() => {
     login();
   }, []);
-  return <p>Logging in</p>;
+
+  return (
+    <div className="py-32 text-center">
+      <h2 className="font-extrabold text-4xl">Logging in</h2>
+    </div>
+  );
 };
 
 export default Login;
